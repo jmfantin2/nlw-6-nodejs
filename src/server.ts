@@ -1,13 +1,13 @@
-import express, { Request, Response } from 'express';
+import 'reflect-metadata';
+import express from 'express';
+import { router } from './routes';
+
+import './database';
 
 const app = express();
 
-app.get('/test', (request, response) => {
-	return response.send({ message: 'oi feladaputa' });
-});
+app.use(express.json());
 
-app.post('/test-post', (request, response) => {
-	return response.send('yeye');
-});
+app.use(router);
 
 app.listen(3000, () => console.log('server on 3000'));
