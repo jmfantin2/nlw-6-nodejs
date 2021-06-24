@@ -9,29 +9,23 @@ interface IUserRequest {
 
 class CreateUserService {
 	async execute({ name, email, admin }: IUserRequest) {
-		const usersRepo = getCustomRepository(UserRepository);
+		const userRepo = getCustomRepository(UserRepository);
 
 		//precisa ter email
-		if (!email) {
-			throw new Error('That is not an email');
-		}
+		if (!email) throw new Error('Email is missing');
 
 		//o email não pode estar em uso
-		const userAlreadyExists = await usersRepo.findOne({
-			email,
-		});
-		if (userAlreadyExists) {
-			throw new Error('User already exists');
-		}
+		const userAlreadyExists = await userRepo.findOne({ email });
+		if (userAlreadyExists) throw new Error('User already exists');
 
 		//se chegou até aqui, toca ficha
-		const user = usersRepo.create({
+		const user = userRepo.create({
 			name,
 			email,
 			admin,
 		});
 
-		await usersRepo.save(user);
+		await userRepo.save(user);
 		return user;
 	}
 }
