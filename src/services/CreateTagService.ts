@@ -9,7 +9,7 @@ class CreateTagService {
 
 		const tagAlreadyExists = await tagRepo.findOne({ name });
 
-		if (tagAlreadyExists) throw new Error('Tag already exists');
+		if (tagAlreadyExists) throw new Error('Tag already exists.');
 
 		//se chegou até aqui, toca ficha
 		const tag = tagRepo.create({ name });

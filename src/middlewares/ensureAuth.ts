@@ -19,7 +19,6 @@ export function ensureAuth(
 
 	//authToken == "Bearer(space)token"
 	const [, token] = authToken.split(' ');
-	console.log(token);
 
 	try {
 		//validar se o token é válido

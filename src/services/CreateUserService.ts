@@ -18,7 +18,7 @@ class CreateUserService {
 
 		//o email não pode estar em uso
 		const userAlreadyExists = await userRepo.findOne({ email });
-		if (userAlreadyExists) throw new Error('User already exists');
+		if (userAlreadyExists) throw new Error('User already exists.');
 
 		//tratar a senha com o devido respeito
 		const pwHash = await hash(password, 8);
