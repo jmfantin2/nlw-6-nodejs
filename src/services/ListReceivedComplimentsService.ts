@@ -1,5 +1,6 @@
 import { getCustomRepository } from 'typeorm';
-import { ComplimentRepository } from '../repositories/ComplimentRepository';
+
+import { ComplimentRepository } from '../repositories';
 
 class ListReceivedComplimentsService {
 	async execute(user_id: string) {

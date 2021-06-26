@@ -5,9 +5,7 @@ import {
 	PrimaryColumn,
 	UpdateDateColumn,
 } from 'typeorm';
-
 import { Expose } from 'class-transformer';
-
 import { v4 as uuid } from 'uuid';
 
 @Entity('tags')

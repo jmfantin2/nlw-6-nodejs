@@ -7,8 +7,7 @@ import {
 	PrimaryColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
-import { Tag } from './Tag';
-import { User } from './User';
+import { Tag, User } from '../entities';
 
 @Entity('compliments')
 class Compliment {

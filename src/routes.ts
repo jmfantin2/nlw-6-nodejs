@@ -1,26 +1,27 @@
 import { Router } from 'express';
-import { CreateUserController } from './controllers/CreateUserController';
-import { CreateTagController } from './controllers/CreateTagController';
-import { AuthUserController } from './controllers/AuthUserController';
-import { CreateComplimentController } from './controllers/CreateComplimentController';
-import { ListSentComplimentsController } from './controllers/ListSentComplimentsController';
-import { ListReceivedComplimentsController } from './controllers/ListReceivedComplimentsController';
-import { ensureAdmin } from './middlewares/ensureAdmin';
-import { ensureAuth } from './middlewares/ensureAuth';
-import { ListTagsController } from './controllers/ListTagsController';
-import { ListUsersController } from './controllers/ListUsersController';
+
+import {
+	AuthUserController,
+	CreateComplimentController,
+	CreateTagController,
+	CreateUserController,
+	ListReceivedComplimentsController,
+	ListSentComplimentsController,
+	ListTagsController,
+	ListUsersController,
+} from './controllers';
+import { ensureAdmin, ensureAuth } from './middlewares';
 
 // always remember: verifications come in middleware
 
 const router = Router();
 
-const createUserController = new CreateUserController();
-const createTagController = new CreateTagController();
 const authUserController = new AuthUserController();
 const createComplimentController = new CreateComplimentController();
-const listSentComplimentsController = new ListSentComplimentsController();
-const listReceivedComplimentsController =
-	new ListReceivedComplimentsController();
+const createTagController = new CreateTagController();
+const createUserController = new CreateUserController();
+const listReceivedCompController = new ListReceivedComplimentsController();
+const listSentCompController = new ListSentComplimentsController();
 const listTagsController = new ListTagsController();
 const listUsersController = new ListUsersController();
 
@@ -34,12 +35,12 @@ router.post('/compliments', ensureAuth, createComplimentController.handle);
 router.get(
 	'/users/compliments/sent',
 	ensureAuth,
-	listSentComplimentsController.handle
+	listSentCompController.handle
 );
 router.get(
 	'/users/compliments/received',
 	ensureAuth,
-	listReceivedComplimentsController.handle
+	listReceivedCompController.handle
 );
 router.get('/tags', ensureAuth, listTagsController.handle);
 router.get('/users', ensureAuth, listUsersController.handle);
